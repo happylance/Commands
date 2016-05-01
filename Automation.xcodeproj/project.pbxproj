@@ -15,6 +15,10 @@
 		40E4971A1CD63E2000C1FC39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40E497181CD63E2000C1FC39 /* LaunchScreen.storyboard */; };
 		40E497251CD63E2000C1FC39 /* AutomationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E497241CD63E2000C1FC39 /* AutomationTests.swift */; };
 		40E497301CD63E2000C1FC39 /* AutomationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E4972F1CD63E2000C1FC39 /* AutomationUITests.swift */; };
+		40E4973E1CD63F6000C1FC39 /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E4973D1CD63F6000C1FC39 /* NMSSH.framework */; };
+		40E497431CD64AF400C1FC39 /* config in Resources */ = {isa = PBXBuildFile; fileRef = 40E497411CD64AF400C1FC39 /* config */; };
+		40E497461CD64B2700C1FC39 /* known_hosts in Resources */ = {isa = PBXBuildFile; fileRef = 40E497451CD64B2700C1FC39 /* known_hosts */; };
+		40E497481CD651D600C1FC39 /* ec2.pem in Resources */ = {isa = PBXBuildFile; fileRef = 40E497471CD651D600C1FC39 /* ec2.pem */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		40E4972B1CD63E2000C1FC39 /* AutomationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutomationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40E4972F1CD63E2000C1FC39 /* AutomationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomationUITests.swift; sourceTree = "<group>"; };
 		40E497311CD63E2000C1FC39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40E4973D1CD63F6000C1FC39 /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NMSSH.framework; path = Carthage/Build/iOS/NMSSH.framework; sourceTree = "<group>"; };
+		40E497411CD64AF400C1FC39 /* config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = config; path = .ssh/config; sourceTree = "<group>"; };
+		40E497451CD64B2700C1FC39 /* known_hosts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = known_hosts; path = .ssh/known_hosts; sourceTree = "<group>"; };
+		40E497471CD651D600C1FC39 /* ec2.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ec2.pem; path = .ssh/ec2.pem; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E4973E1CD63F6000C1FC39 /* NMSSH.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +88,7 @@
 		40E497011CD63E2000C1FC39 = {
 			isa = PBXGroup;
 			children = (
+				40E4973D1CD63F6000C1FC39 /* NMSSH.framework */,
 				40E4970C1CD63E2000C1FC39 /* Automation */,
 				40E497231CD63E2000C1FC39 /* AutomationTests */,
 				40E4972E1CD63E2000C1FC39 /* AutomationUITests */,
@@ -99,6 +109,7 @@
 		40E4970C1CD63E2000C1FC39 /* Automation */ = {
 			isa = PBXGroup;
 			children = (
+				40E497401CD64A7D00C1FC39 /* .ssh */,
 				40E4970D1CD63E2000C1FC39 /* AppDelegate.swift */,
 				40E4970F1CD63E2000C1FC39 /* MasterViewController.swift */,
 				40E497111CD63E2000C1FC39 /* DetailViewController.swift */,
@@ -128,6 +139,16 @@
 			path = AutomationUITests;
 			sourceTree = "<group>";
 		};
+		40E497401CD64A7D00C1FC39 /* .ssh */ = {
+			isa = PBXGroup;
+			children = (
+				40E497411CD64AF400C1FC39 /* config */,
+				40E497471CD651D600C1FC39 /* ec2.pem */,
+				40E497451CD64B2700C1FC39 /* known_hosts */,
+			);
+			name = .ssh;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,6 +159,7 @@
 				40E497061CD63E2000C1FC39 /* Sources */,
 				40E497071CD63E2000C1FC39 /* Frameworks */,
 				40E497081CD63E2000C1FC39 /* Resources */,
+				40E4973F1CD63F9600C1FC39 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -235,9 +257,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E497431CD64AF400C1FC39 /* config in Resources */,
 				40E4971A1CD63E2000C1FC39 /* LaunchScreen.storyboard in Resources */,
 				40E497171CD63E2000C1FC39 /* Assets.xcassets in Resources */,
+				40E497481CD651D600C1FC39 /* ec2.pem in Resources */,
 				40E497151CD63E2000C1FC39 /* Main.storyboard in Resources */,
+				40E497461CD64B2700C1FC39 /* known_hosts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +281,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		40E4973F1CD63F9600C1FC39 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/NMSSH.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		40E497061CD63E2000C1FC39 /* Sources */ = {
@@ -408,6 +450,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Automation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Lance.Automation;
@@ -419,6 +465,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Automation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Lance.Automation;
