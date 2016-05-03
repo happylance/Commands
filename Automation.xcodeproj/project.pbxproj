@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		406F9F4A1CD8448E00E019DD /* SshUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406F9F491CD8448E00E019DD /* SshUtils.swift */; };
+		40C607261CD6BF14000C84B8 /* LocationTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */; };
+		40C6072A1CD6ED83000C84B8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C607291CD6ED83000C84B8 /* Utils.swift */; };
 		40E4970E1CD63E2000C1FC39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E4970D1CD63E2000C1FC39 /* AppDelegate.swift */; };
 		40E497101CD63E2000C1FC39 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E4970F1CD63E2000C1FC39 /* MasterViewController.swift */; };
 		40E497121CD63E2000C1FC39 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E497111CD63E2000C1FC39 /* DetailViewController.swift */; };
@@ -39,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		406F9F491CD8448E00E019DD /* SshUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SshUtils.swift; sourceTree = "<group>"; };
+		40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTrackingManager.swift; sourceTree = "<group>"; };
+		40C607291CD6ED83000C84B8 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		40E4970A1CD63E2000C1FC39 /* Automation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Automation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40E4970D1CD63E2000C1FC39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40E4970F1CD63E2000C1FC39 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +123,9 @@
 				40E497161CD63E2000C1FC39 /* Assets.xcassets */,
 				40E497181CD63E2000C1FC39 /* LaunchScreen.storyboard */,
 				40E4971B1CD63E2000C1FC39 /* Info.plist */,
+				40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */,
+				40C607291CD6ED83000C84B8 /* Utils.swift */,
+				406F9F491CD8448E00E019DD /* SshUtils.swift */,
 			);
 			path = Automation;
 			sourceTree = "<group>";
@@ -219,6 +228,11 @@
 					40E497091CD63E2000C1FC39 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 7YC8KN9YF3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					40E4971F1CD63E2000C1FC39 = {
 						CreatedOnToolsVersion = 7.3;
@@ -304,9 +318,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40C6072A1CD6ED83000C84B8 /* Utils.swift in Sources */,
 				40E497121CD63E2000C1FC39 /* DetailViewController.swift in Sources */,
 				40E497101CD63E2000C1FC39 /* MasterViewController.swift in Sources */,
 				40E4970E1CD63E2000C1FC39 /* AppDelegate.swift in Sources */,
+				406F9F4A1CD8448E00E019DD /* SshUtils.swift in Sources */,
+				40C607261CD6BF14000C84B8 /* LocationTrackingManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +558,7 @@
 				40E497361CD63E2000C1FC39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		40E497371CD63E2000C1FC39 /* Build configuration list for PBXNativeTarget "AutomationTests" */ = {
 			isa = XCConfigurationList;
@@ -549,6 +567,7 @@
 				40E497391CD63E2000C1FC39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		40E4973A1CD63E2000C1FC39 /* Build configuration list for PBXNativeTarget "AutomationUITests" */ = {
 			isa = XCConfigurationList;
@@ -557,6 +576,7 @@
 				40E4973C1CD63E2000C1FC39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
