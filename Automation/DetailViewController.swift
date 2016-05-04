@@ -24,7 +24,13 @@ class DetailViewController: UIViewController {
         if let detail = self.detailItem {
             if let textView = self.detailTextView {
                 textView.textAlignment = .Left
-                textView.text = Utils.executeCmd(detail as? String ?? "uname -a")
+                let result = Utils.executeCmd(detail as? String ?? "uname -a")
+                switch result {
+                case .Success:
+                    textView.text = result.value
+                case .Failure:
+                    textView.text = result.error?.localizedDescription
+                }
             }
         }
     }

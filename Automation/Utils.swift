@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import Result
 
 class Utils {
     static func sayCN(text: String) {
@@ -24,12 +25,12 @@ class Utils {
         return time
     }
     
-    static func executeCmd(cmd: String) -> String {
+    static func executeCmd(cmd: String) -> Result<String, NSError> {
         var command = cmd
         let localPrefix = "local "
         if command.hasPrefix(localPrefix) {
             command.removeRange(localPrefix.startIndex ..< localPrefix.endIndex)
-            return executeLocalCmd(command)
+            return .Success(executeLocalCmd(command))
         }
         return SshUtils.executeSshCmd(command)
     }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40422F7E1CD975240019EBC6 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40422F7D1CD975240019EBC6 /* Result.framework */; };
+		40422F801CD991EA0019EBC6 /* CommandHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40422F7F1CD991E90019EBC6 /* CommandHelper.swift */; };
 		406F9F4A1CD8448E00E019DD /* SshUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406F9F491CD8448E00E019DD /* SshUtils.swift */; };
 		40C607261CD6BF14000C84B8 /* LocationTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */; };
 		40C6072A1CD6ED83000C84B8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C607291CD6ED83000C84B8 /* Utils.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		40422F7D1CD975240019EBC6 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		40422F7F1CD991E90019EBC6 /* CommandHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandHelper.swift; sourceTree = "<group>"; };
 		406F9F491CD8448E00E019DD /* SshUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SshUtils.swift; sourceTree = "<group>"; };
 		40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTrackingManager.swift; sourceTree = "<group>"; };
 		40C607291CD6ED83000C84B8 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -71,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40E4973E1CD63F6000C1FC39 /* NMSSH.framework in Frameworks */,
+				40422F7E1CD975240019EBC6 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +99,7 @@
 		40E497011CD63E2000C1FC39 = {
 			isa = PBXGroup;
 			children = (
+				40422F7D1CD975240019EBC6 /* Result.framework */,
 				40E4973D1CD63F6000C1FC39 /* NMSSH.framework */,
 				40E4970C1CD63E2000C1FC39 /* Automation */,
 				40E497231CD63E2000C1FC39 /* AutomationTests */,
@@ -126,6 +132,7 @@
 				40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */,
 				40C607291CD6ED83000C84B8 /* Utils.swift */,
 				406F9F491CD8448E00E019DD /* SshUtils.swift */,
+				40422F7F1CD991E90019EBC6 /* CommandHelper.swift */,
 			);
 			path = Automation;
 			sourceTree = "<group>";
@@ -304,6 +311,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/NMSSH.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 			);
 			outputPaths = (
 			);
@@ -321,6 +329,7 @@
 				40C6072A1CD6ED83000C84B8 /* Utils.swift in Sources */,
 				40E497121CD63E2000C1FC39 /* DetailViewController.swift in Sources */,
 				40E497101CD63E2000C1FC39 /* MasterViewController.swift in Sources */,
+				40422F801CD991EA0019EBC6 /* CommandHelper.swift in Sources */,
 				40E4970E1CD63E2000C1FC39 /* AppDelegate.swift in Sources */,
 				406F9F4A1CD8448E00E019DD /* SshUtils.swift in Sources */,
 				40C607261CD6BF14000C84B8 /* LocationTrackingManager.swift in Sources */,

@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
-
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -20,6 +20,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            print("AVAudioSession Category Playback OK")
+            do {
+                try AVAudioSession.sharedInstance().setActive(true)
+                print("AVAudioSession is Active")
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
         return true
     }
 
@@ -31,6 +45,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        let latestCommand = CommandHelper.latestCommand
+        if latestCommand != "nbt" {
+            return;
+        }
+        
+        var background_task = UIBackgroundTaskInvalid
+        background_task = application.beginBackgroundTaskWithExpirationHandler({
+            application.endBackgroundTask(background_task)
+            background_task = UIBackgroundTaskInvalid;
+        });
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            var count = 0
+            while(count < 10)
+            {
+                let result = SshUtils.executeSshCmd(latestCommand)
+                switch result {
+                case .Success:
+                    if result.value?.characters.count > 0 {
+                        Utils.executeLocalCmd("say \(result.value!)")
+                    } else {
+                        print("Empty response")
+                    }
+                case .Failure:
+                    break
+                }
+                
+                let remainTime = UIApplication.sharedApplication().backgroundTimeRemaining
+                print("Background time Remaining: \(remainTime)")
+                NSThread.sleepForTimeInterval(20)
+                
+                if remainTime < 40 {
+                    break;
+                }
+                
+                count = count + 1
+            }
+            
+            application.endBackgroundTask(background_task)
+            background_task = UIBackgroundTaskInvalid;
+        })
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

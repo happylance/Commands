@@ -8,9 +8,10 @@
 
 import Foundation
 import NMSSH
+import Result
 
 class SshUtils {
-    static func executeSshCmd(command: String) -> String {
+    static func executeSshCmd(command: String) -> Result<String, NSError> {
         let configFilePath = NSBundle.mainBundle().pathForResource("config", ofType: nil);
         let config = NMSSHConfig(fromFile:configFilePath)
         
@@ -25,15 +26,15 @@ class SshUtils {
         }
         
         var error : NSError? = nil
-        var response = session.channel.execute(command, error:&error, timeout:10)
+        let response = session.channel.execute(command, error:&error, timeout:10)
         if let error = error {
             print(error)
-            response = "\(response)\(error.description)"
+            return .Failure(error)
         }
         
         print(response)
         session.disconnect()
-        return response
+        return .Success(response)
     }
     
 }

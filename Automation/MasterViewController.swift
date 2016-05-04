@@ -16,7 +16,7 @@ struct Constants {
 class MasterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     var commands = (Constants.defaults.arrayForKey(Constants.commandsKey) as? [String]) ?? [String]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -74,6 +74,8 @@ class MasterViewController: UITableViewController {
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
+                
+                CommandHelper.latestCommand = object
             }
         }
     }
