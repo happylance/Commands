@@ -22,7 +22,11 @@ class SshUtils {
             session.authenticateByPublicKey(nil, privateKey: privateKey, andPassword: nil)
             if (session.authorized) {
                 print("Authentication succeeded");
+            } else {
+                return .Failure(NSError(domain:"Automation", code: 101, userInfo: [NSLocalizedDescriptionKey : "Authentication failed"]))
             }
+        } else {
+            return .Failure(NSError(domain:"Automation", code: 102, userInfo: [NSLocalizedDescriptionKey : "Connection failed"]))
         }
         
         var error : NSError? = nil
