@@ -1,6 +1,6 @@
 //
 //  SshUtils.swift
-//  Automation
+//  Commands
 //
 //  Created by Liu Liang on 5/2/16.
 //  Copyright © 2016 Liu Liang. All rights reserved.
@@ -23,10 +23,10 @@ class SshUtils {
             if (session.authorized) {
                 print("Authentication succeeded");
             } else {
-                return .Failure(NSError(domain:"Automation", code: 101, userInfo: [NSLocalizedDescriptionKey : "Authentication failed"]))
+                return .Failure(NSError(domain:"Commands", code: 101, userInfo: [NSLocalizedDescriptionKey : "Authentication failed"]))
             }
         } else {
-            return .Failure(NSError(domain:"Automation", code: 102, userInfo: [NSLocalizedDescriptionKey : "Connection failed"]))
+            return .Failure(NSError(domain:"Commands", code: 102, userInfo: [NSLocalizedDescriptionKey : "Connection failed"]))
         }
         
         var error : NSError? = nil

@@ -1,6 +1,6 @@
 //
 //  BinarySearch.swift
-//  Automation
+//  Commands
 //
 //  Created by Liu Liang on 5/8/16.
 //  Copyright © 2016 Liu Liang. All rights reserved.
