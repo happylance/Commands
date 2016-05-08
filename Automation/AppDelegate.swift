@@ -8,11 +8,20 @@
 
 import UIKit
 import AVFoundation
+import PasscodeLock
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
+    
+    lazy var passcodeLockPresenter: PasscodeLockPresenter = {
+        
+        let configuration = PasscodeLockConfiguration()
+        let presenter = PasscodeLockPresenter(mainWindow: self.window, configuration: configuration)
+        
+        return presenter
+    }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -20,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
+        
+        passcodeLockPresenter.presentPasscodeLock()
         
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -45,6 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        passcodeLockPresenter.presentPasscodeLock()
         
         let latestCommand = CommandHelper.latestCommand
         if latestCommand != "nbt" {

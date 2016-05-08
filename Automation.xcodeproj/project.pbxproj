@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4001EA571CDEDD5E000D563C /* PasscodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4001EA561CDEDD5E000D563C /* PasscodeRepository.swift */; };
+		4001EA591CDEDE14000D563C /* PasscodeLockConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4001EA581CDEDE14000D563C /* PasscodeLockConfiguration.swift */; };
+		4001EA5E1CDEE183000D563C /* config in Resources */ = {isa = PBXBuildFile; fileRef = 4001EA5B1CDEE183000D563C /* config */; };
+		4001EA5F1CDEE183000D563C /* ec2.pem in Resources */ = {isa = PBXBuildFile; fileRef = 4001EA5C1CDEE183000D563C /* ec2.pem */; };
+		4001EA621CDEE19D000D563C /* .passcode in Resources */ = {isa = PBXBuildFile; fileRef = 4001EA611CDEE19D000D563C /* .passcode */; };
 		40422F7E1CD975240019EBC6 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40422F7D1CD975240019EBC6 /* Result.framework */; };
 		40422F801CD991EA0019EBC6 /* CommandHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40422F7F1CD991E90019EBC6 /* CommandHelper.swift */; };
+		40422F821CD99C390019EBC6 /* PasscodeLock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40422F811CD99C390019EBC6 /* PasscodeLock.framework */; };
 		406F9F4A1CD8448E00E019DD /* SshUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406F9F491CD8448E00E019DD /* SshUtils.swift */; };
 		40C607261CD6BF14000C84B8 /* LocationTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */; };
 		40C6072A1CD6ED83000C84B8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C607291CD6ED83000C84B8 /* Utils.swift */; };
@@ -21,9 +27,6 @@
 		40E497251CD63E2000C1FC39 /* AutomationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E497241CD63E2000C1FC39 /* AutomationTests.swift */; };
 		40E497301CD63E2000C1FC39 /* AutomationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E4972F1CD63E2000C1FC39 /* AutomationUITests.swift */; };
 		40E4973E1CD63F6000C1FC39 /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E4973D1CD63F6000C1FC39 /* NMSSH.framework */; };
-		40E497431CD64AF400C1FC39 /* config in Resources */ = {isa = PBXBuildFile; fileRef = 40E497411CD64AF400C1FC39 /* config */; };
-		40E497461CD64B2700C1FC39 /* known_hosts in Resources */ = {isa = PBXBuildFile; fileRef = 40E497451CD64B2700C1FC39 /* known_hosts */; };
-		40E497481CD651D600C1FC39 /* ec2.pem in Resources */ = {isa = PBXBuildFile; fileRef = 40E497471CD651D600C1FC39 /* ec2.pem */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,8 +47,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4001EA561CDEDD5E000D563C /* PasscodeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeRepository.swift; path = PasscodeLock/PasscodeRepository.swift; sourceTree = "<group>"; };
+		4001EA581CDEDE14000D563C /* PasscodeLockConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeLockConfiguration.swift; path = PasscodeLock/PasscodeLockConfiguration.swift; sourceTree = "<group>"; };
+		4001EA5B1CDEE183000D563C /* config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = config; path = Resources/.ssh/config; sourceTree = "<group>"; };
+		4001EA5C1CDEE183000D563C /* ec2.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ec2.pem; path = Resources/.ssh/ec2.pem; sourceTree = "<group>"; };
+		4001EA611CDEE19D000D563C /* .passcode */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .passcode; path = Resources/.passcode; sourceTree = "<group>"; };
 		40422F7D1CD975240019EBC6 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		40422F7F1CD991E90019EBC6 /* CommandHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandHelper.swift; sourceTree = "<group>"; };
+		40422F811CD99C390019EBC6 /* PasscodeLock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PasscodeLock.framework; path = Carthage/Build/iOS/PasscodeLock.framework; sourceTree = "<group>"; };
 		406F9F491CD8448E00E019DD /* SshUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SshUtils.swift; sourceTree = "<group>"; };
 		40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTrackingManager.swift; sourceTree = "<group>"; };
 		40C607291CD6ED83000C84B8 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -64,9 +73,6 @@
 		40E4972F1CD63E2000C1FC39 /* AutomationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomationUITests.swift; sourceTree = "<group>"; };
 		40E497311CD63E2000C1FC39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E4973D1CD63F6000C1FC39 /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NMSSH.framework; path = Carthage/Build/iOS/NMSSH.framework; sourceTree = "<group>"; };
-		40E497411CD64AF400C1FC39 /* config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = config; path = .ssh/config; sourceTree = "<group>"; };
-		40E497451CD64B2700C1FC39 /* known_hosts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = known_hosts; path = .ssh/known_hosts; sourceTree = "<group>"; };
-		40E497471CD651D600C1FC39 /* ec2.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ec2.pem; path = .ssh/ec2.pem; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40E4973E1CD63F6000C1FC39 /* NMSSH.framework in Frameworks */,
+				40422F821CD99C390019EBC6 /* PasscodeLock.framework in Frameworks */,
 				40422F7E1CD975240019EBC6 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,9 +103,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4001EA5A1CDEE0C6000D563C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4001EA611CDEE19D000D563C /* .passcode */,
+				40E497401CD64A7D00C1FC39 /* .ssh */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		409D44211CDEDCD9005008DF /* PasscodeLock */ = {
+			isa = PBXGroup;
+			children = (
+				4001EA581CDEDE14000D563C /* PasscodeLockConfiguration.swift */,
+				4001EA561CDEDD5E000D563C /* PasscodeRepository.swift */,
+			);
+			name = PasscodeLock;
+			sourceTree = "<group>";
+		};
 		40E497011CD63E2000C1FC39 = {
 			isa = PBXGroup;
 			children = (
+				40422F811CD99C390019EBC6 /* PasscodeLock.framework */,
 				40422F7D1CD975240019EBC6 /* Result.framework */,
 				40E4973D1CD63F6000C1FC39 /* NMSSH.framework */,
 				40E4970C1CD63E2000C1FC39 /* Automation */,
@@ -121,7 +147,8 @@
 		40E4970C1CD63E2000C1FC39 /* Automation */ = {
 			isa = PBXGroup;
 			children = (
-				40E497401CD64A7D00C1FC39 /* .ssh */,
+				4001EA5A1CDEE0C6000D563C /* Resources */,
+				409D44211CDEDCD9005008DF /* PasscodeLock */,
 				40E4970D1CD63E2000C1FC39 /* AppDelegate.swift */,
 				40E4970F1CD63E2000C1FC39 /* MasterViewController.swift */,
 				40E497111CD63E2000C1FC39 /* DetailViewController.swift */,
@@ -158,9 +185,8 @@
 		40E497401CD64A7D00C1FC39 /* .ssh */ = {
 			isa = PBXGroup;
 			children = (
-				40E497411CD64AF400C1FC39 /* config */,
-				40E497471CD651D600C1FC39 /* ec2.pem */,
-				40E497451CD64B2700C1FC39 /* known_hosts */,
+				4001EA5B1CDEE183000D563C /* config */,
+				4001EA5C1CDEE183000D563C /* ec2.pem */,
 			);
 			name = .ssh;
 			sourceTree = "<group>";
@@ -278,12 +304,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40E497431CD64AF400C1FC39 /* config in Resources */,
+				4001EA5E1CDEE183000D563C /* config in Resources */,
+				4001EA5F1CDEE183000D563C /* ec2.pem in Resources */,
+				4001EA621CDEE19D000D563C /* .passcode in Resources */,
 				40E4971A1CD63E2000C1FC39 /* LaunchScreen.storyboard in Resources */,
 				40E497171CD63E2000C1FC39 /* Assets.xcassets in Resources */,
-				40E497481CD651D600C1FC39 /* ec2.pem in Resources */,
 				40E497151CD63E2000C1FC39 /* Main.storyboard in Resources */,
-				40E497461CD64B2700C1FC39 /* known_hosts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +338,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/NMSSH.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PasscodeLock.framework",
 			);
 			outputPaths = (
 			);
@@ -330,6 +357,8 @@
 				40E497121CD63E2000C1FC39 /* DetailViewController.swift in Sources */,
 				40E497101CD63E2000C1FC39 /* MasterViewController.swift in Sources */,
 				40422F801CD991EA0019EBC6 /* CommandHelper.swift in Sources */,
+				4001EA591CDEDE14000D563C /* PasscodeLockConfiguration.swift in Sources */,
+				4001EA571CDEDD5E000D563C /* PasscodeRepository.swift in Sources */,
 				40E4970E1CD63E2000C1FC39 /* AppDelegate.swift in Sources */,
 				406F9F4A1CD8448E00E019DD /* SshUtils.swift in Sources */,
 				40C607261CD6BF14000C84B8 /* LocationTrackingManager.swift in Sources */,

@@ -1,2 +1,3 @@
 github "NMSSH/NMSSH"
 github "antitypical/Result"
+github "yankodimitrov/SwiftPasscodeLock"
