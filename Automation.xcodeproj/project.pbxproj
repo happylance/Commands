@@ -106,6 +106,10 @@
 		4001EA5A1CDEE0C6000D563C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				40E497131CD63E2000C1FC39 /* Main.storyboard */,
+				40E497161CD63E2000C1FC39 /* Assets.xcassets */,
+				40E497181CD63E2000C1FC39 /* LaunchScreen.storyboard */,
+				40E4971B1CD63E2000C1FC39 /* Info.plist */,
 				4001EA611CDEE19D000D563C /* .passcode */,
 				40E497401CD64A7D00C1FC39 /* .ssh */,
 			);
@@ -152,10 +156,6 @@
 				40E4970D1CD63E2000C1FC39 /* AppDelegate.swift */,
 				40E4970F1CD63E2000C1FC39 /* MasterViewController.swift */,
 				40E497111CD63E2000C1FC39 /* DetailViewController.swift */,
-				40E497131CD63E2000C1FC39 /* Main.storyboard */,
-				40E497161CD63E2000C1FC39 /* Assets.xcassets */,
-				40E497181CD63E2000C1FC39 /* LaunchScreen.storyboard */,
-				40E4971B1CD63E2000C1FC39 /* Info.plist */,
 				40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */,
 				40C607291CD6ED83000C84B8 /* Utils.swift */,
 				406F9F491CD8448E00E019DD /* SshUtils.swift */,
