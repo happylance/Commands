@@ -13,11 +13,11 @@
 		4001EA5F1CDEE183000D563C /* ec2.pem in Resources */ = {isa = PBXBuildFile; fileRef = 4001EA5C1CDEE183000D563C /* ec2.pem */; };
 		4001EA621CDEE19D000D563C /* .passcode in Resources */ = {isa = PBXBuildFile; fileRef = 4001EA611CDEE19D000D563C /* .passcode */; };
 		40422F7E1CD975240019EBC6 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40422F7D1CD975240019EBC6 /* Result.framework */; };
-		40422F801CD991EA0019EBC6 /* CommandHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40422F7F1CD991E90019EBC6 /* CommandHelper.swift */; };
 		40422F821CD99C390019EBC6 /* PasscodeLock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40422F811CD99C390019EBC6 /* PasscodeLock.framework */; };
 		40790A061CDF7E8000FF6FF3 /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40790A051CDF7E8000FF6FF3 /* BinarySearch.swift */; };
 		40790A081CDF7EF600FF6FF3 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40790A071CDF7EF600FF6FF3 /* Utils.swift */; };
 		40790A0A1CDF7EFF00FF6FF3 /* SshUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40790A091CDF7EFF00FF6FF3 /* SshUtils.swift */; };
+		40790A0E1CDF8B3000FF6FF3 /* CommandHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40790A0D1CDF8B3000FF6FF3 /* CommandHelper.swift */; };
 		40C607261CD6BF14000C84B8 /* LocationTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */; };
 		40E4970E1CD63E2000C1FC39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E4970D1CD63E2000C1FC39 /* AppDelegate.swift */; };
 		40E497101CD63E2000C1FC39 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E4970F1CD63E2000C1FC39 /* MasterViewController.swift */; };
@@ -54,11 +54,11 @@
 		4001EA5C1CDEE183000D563C /* ec2.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ec2.pem; path = Resources/.ssh/ec2.pem; sourceTree = "<group>"; };
 		4001EA611CDEE19D000D563C /* .passcode */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .passcode; path = Resources/.passcode; sourceTree = "<group>"; };
 		40422F7D1CD975240019EBC6 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
-		40422F7F1CD991E90019EBC6 /* CommandHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandHelper.swift; sourceTree = "<group>"; };
 		40422F811CD99C390019EBC6 /* PasscodeLock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PasscodeLock.framework; path = Carthage/Build/iOS/PasscodeLock.framework; sourceTree = "<group>"; };
 		40790A051CDF7E8000FF6FF3 /* BinarySearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BinarySearch.swift; path = Utils/BinarySearch.swift; sourceTree = "<group>"; };
 		40790A071CDF7EF600FF6FF3 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
 		40790A091CDF7EFF00FF6FF3 /* SshUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SshUtils.swift; path = Utils/SshUtils.swift; sourceTree = "<group>"; };
+		40790A0D1CDF8B3000FF6FF3 /* CommandHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandHelper.swift; path = Utils/CommandHelper.swift; sourceTree = "<group>"; };
 		40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTrackingManager.swift; sourceTree = "<group>"; };
 		40E4970A1CD63E2000C1FC39 /* Automation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Automation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40E4970D1CD63E2000C1FC39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				40790A051CDF7E8000FF6FF3 /* BinarySearch.swift */,
+				40790A0D1CDF8B3000FF6FF3 /* CommandHelper.swift */,
 				40790A091CDF7EFF00FF6FF3 /* SshUtils.swift */,
 				40790A071CDF7EF600FF6FF3 /* Utils.swift */,
 			);
@@ -167,7 +168,6 @@
 				409D44211CDEDCD9005008DF /* PasscodeLock */,
 				40790A041CDF7E5500FF6FF3 /* Utils */,
 				40E4970D1CD63E2000C1FC39 /* AppDelegate.swift */,
-				40422F7F1CD991E90019EBC6 /* CommandHelper.swift */,
 				40E497111CD63E2000C1FC39 /* DetailViewController.swift */,
 				40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */,
 				40E4970F1CD63E2000C1FC39 /* MasterViewController.swift */,
@@ -368,10 +368,10 @@
 				40E497121CD63E2000C1FC39 /* DetailViewController.swift in Sources */,
 				40E497101CD63E2000C1FC39 /* MasterViewController.swift in Sources */,
 				40790A081CDF7EF600FF6FF3 /* Utils.swift in Sources */,
-				40422F801CD991EA0019EBC6 /* CommandHelper.swift in Sources */,
 				40790A061CDF7E8000FF6FF3 /* BinarySearch.swift in Sources */,
 				4001EA591CDEDE14000D563C /* PasscodeLockConfiguration.swift in Sources */,
 				4001EA571CDEDD5E000D563C /* PasscodeRepository.swift in Sources */,
+				40790A0E1CDF8B3000FF6FF3 /* CommandHelper.swift in Sources */,
 				40E4970E1CD63E2000C1FC39 /* AppDelegate.swift in Sources */,
 				40C607261CD6BF14000C84B8 /* LocationTrackingManager.swift in Sources */,
 			);
