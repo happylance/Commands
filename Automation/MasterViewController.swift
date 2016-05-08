@@ -30,6 +30,7 @@ class MasterViewController: UITableViewController {
         }
         
         self.commands = (Constants.defaults.arrayForKey(Constants.commandsKey) as? [String]) ?? [String]()
+        self.commands = self.commands.sort()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -51,10 +52,12 @@ class MasterViewController: UITableViewController {
             if command.isEmpty {
                 return
             }
-            self.commands.insert(command, atIndex: 0)
+            
+            let index = self.commands.binarySearch{$0 < command}
+            self.commands.insert(command, atIndex: index)
             Constants.defaults.setObject(self.commands, forKey: Constants.commandsKey)
             Constants.defaults.synchronize()
-            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+            let indexPath = NSIndexPath(forRow: index, inSection: 0)
             self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }))
         alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
