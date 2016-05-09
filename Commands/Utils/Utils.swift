@@ -30,12 +30,17 @@ class Utils {
         let localPrefix = "local "
         if command.hasPrefix(localPrefix) {
             command.removeRange(localPrefix.startIndex ..< localPrefix.endIndex)
-            return .Success(executeLocalCmd(command))
+            return executeLocalCmd(command)
         }
+        
+        if command.lowercaseString.containsString("mac unlock") {
+            return SshUnlock.macUnlock(true)
+        }
+        
         return SshUtils.executeSshCmd(command)
     }
     
-    static func executeLocalCmd(cmd: String) -> String {
+    static func executeLocalCmd(cmd: String) -> Result<String, NSError> {
         var command = cmd
         let sayPrefix = "say "
         if command.hasPrefix(sayPrefix) {
@@ -46,8 +51,9 @@ class Utils {
             }
             
             Utils.sayCN(command)
+            return .Success("")
+        } else {
+            return .Failure(NSError(domain:"Commands", code: 121, userInfo: [NSLocalizedDescriptionKey : "This command is not supported."]))
         }
-        return ""
     }
-    
 }

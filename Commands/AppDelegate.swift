@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import PasscodeLock
+import SwiftKeychainWrapper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -19,6 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         let configuration = PasscodeLockConfiguration()
         let presenter = PasscodeLockPresenter(mainWindow: self.window, configuration: configuration)
+        
+        presenter.passcodeLockVC.dismissCompletionCallback =  {
+            SshUnlock.macUnlock(false)
+        }
         
         return presenter
     }()
