@@ -37,6 +37,10 @@ class Utils {
             return SshUnlock.macUnlock(true)
         }
         
+        if command.lowercaseString.containsString("mac forget") {
+            return SshUnlock.macForget()
+        }
+        
         return SshUtils.executeSshCmd(command)
     }
     

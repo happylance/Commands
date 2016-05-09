@@ -532,7 +532,7 @@
 				);
 				INFOPLIST_FILE = Commands/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Lance.Commands;
+				PRODUCT_BUNDLE_IDENTIFIER = debug.Lance.Commands;
 				PRODUCT_NAME = Commands;
 			};
 			name = Debug;

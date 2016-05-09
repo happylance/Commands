@@ -10,11 +10,16 @@ import Foundation
 import Result
 import SwiftKeychainWrapper
 
+let hostToUnlockKey = "hostToUnlock"
+let hostUsernameToUnlockKey = "hostUsernameToUnlock"
+let hostPasswordToUnlockKey = "hostPasswordToUnlock"
+
 class SshUnlock {
+    
     static func macUnlock(canRequireInput: Bool) -> Result<String, NSError> {
-        let host = KeychainWrapper.stringForKey("hostToUnlock")
-        let username = KeychainWrapper.stringForKey("hostUsernameToUnlock")
-        let password = KeychainWrapper.stringForKey("hostPasswordToUnlock")
+        let host = KeychainWrapper.stringForKey(hostToUnlockKey)
+        let username = KeychainWrapper.stringForKey(hostUsernameToUnlockKey)
+        let password = KeychainWrapper.stringForKey(hostPasswordToUnlockKey)
         if canRequireInput && (host == nil || username == nil || password == nil ||
             host?.characters.count == 0 || username?.characters.count == 0 || password?.characters.count == 0) {
             let alert = UIAlertController(title: nil, message: "Please input host name, username and password", preferredStyle: UIAlertControllerStyle.Alert)
@@ -38,9 +43,9 @@ class SshUnlock {
                     return
                 }
                 
-                KeychainWrapper.setString(host, forKey: "hostToUnlock")
-                KeychainWrapper.setString(username, forKey: "hostUsernameToUnlock")
-                KeychainWrapper.setString(password, forKey: "hostPasswordToUnlock")
+                KeychainWrapper.setString(host, forKey: hostToUnlockKey)
+                KeychainWrapper.setString(username, forKey: hostUsernameToUnlockKey)
+                KeychainWrapper.setString(password, forKey: hostPasswordToUnlockKey)
             }))
             alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
                 textField.placeholder = "Enter host:"
@@ -69,15 +74,29 @@ class SshUnlock {
             
             return result
         } else {
-            if host?.characters.count == 0 {
-                return .Failure(NSError(domain:"Commands", code: 111, userInfo: [NSLocalizedDescriptionKey : "Host is empty"]))
+            if host == nil || host?.characters.count == 0 {
+                return .Failure(NSError(domain:"Commands", code: 111, userInfo: [NSLocalizedDescriptionKey : "Host is not set"]))
             }
             
-            if username?.characters.count == 0 {
-                return .Failure(NSError(domain:"Commands", code: 111, userInfo: [NSLocalizedDescriptionKey : "username is empty"]))
+            if username == nil || username?.characters.count == 0 {
+                return .Failure(NSError(domain:"Commands", code: 111, userInfo: [NSLocalizedDescriptionKey : "Username is not set"]))
             }
             
-            return .Failure(NSError(domain:"Commands", code: 111, userInfo: [NSLocalizedDescriptionKey : "password is empty"]))
+            return .Failure(NSError(domain:"Commands", code: 111, userInfo: [NSLocalizedDescriptionKey : "Password is not set"]))
+        }
+    }
+    
+    static func macForget() -> Result<String, NSError> {
+        let host = KeychainWrapper.stringForKey(hostToUnlockKey)
+        
+        KeychainWrapper.removeObjectForKey(hostToUnlockKey)
+        KeychainWrapper.removeObjectForKey(hostUsernameToUnlockKey)
+        KeychainWrapper.removeObjectForKey(hostPasswordToUnlockKey)
+        
+        if host == nil || host?.characters.count == 0 {
+            return .Success("There's no host to forget.")
+        } else {
+            return .Success("Login info for \(host!) was removed.")
         }
     }
 }
