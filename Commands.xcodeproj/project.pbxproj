@@ -13,7 +13,7 @@
 		4001EA5F1CDEE183000D563C /* ec2.pem in Resources */ = {isa = PBXBuildFile; fileRef = 4001EA5C1CDEE183000D563C /* ec2.pem */; };
 		4001EA621CDEE19D000D563C /* .passcode in Resources */ = {isa = PBXBuildFile; fileRef = 4001EA611CDEE19D000D563C /* .passcode */; };
 		4025B2A21CDFC49700B112AD /* SwiftKeychainWrapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4025B2A11CDFC49700B112AD /* SwiftKeychainWrapper.framework */; };
-		4025B2A41CDFFBC900B112AD /* SshUnlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025B2A31CDFFBC900B112AD /* SshUnlock.swift */; };
+		4025B2A41CDFFBC900B112AD /* SshMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025B2A31CDFFBC900B112AD /* SshMac.swift */; };
 		40422F7E1CD975240019EBC6 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40422F7D1CD975240019EBC6 /* Result.framework */; };
 		40422F821CD99C390019EBC6 /* PasscodeLock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40422F811CD99C390019EBC6 /* PasscodeLock.framework */; };
 		40790A061CDF7E8000FF6FF3 /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40790A051CDF7E8000FF6FF3 /* BinarySearch.swift */; };
@@ -56,7 +56,7 @@
 		4001EA5C1CDEE183000D563C /* ec2.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ec2.pem; path = Resources/.ssh/ec2.pem; sourceTree = "<group>"; };
 		4001EA611CDEE19D000D563C /* .passcode */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .passcode; path = Resources/.passcode; sourceTree = "<group>"; };
 		4025B2A11CDFC49700B112AD /* SwiftKeychainWrapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftKeychainWrapper.framework; path = Carthage/Build/iOS/SwiftKeychainWrapper.framework; sourceTree = "<group>"; };
-		4025B2A31CDFFBC900B112AD /* SshUnlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SshUnlock.swift; path = Utils/SshUnlock.swift; sourceTree = "<group>"; };
+		4025B2A31CDFFBC900B112AD /* SshMac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SshMac.swift; path = Utils/SshMac.swift; sourceTree = "<group>"; };
 		40422F7D1CD975240019EBC6 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		40422F811CD99C390019EBC6 /* PasscodeLock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PasscodeLock.framework; path = Carthage/Build/iOS/PasscodeLock.framework; sourceTree = "<group>"; };
 		40790A051CDF7E8000FF6FF3 /* BinarySearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BinarySearch.swift; path = Utils/BinarySearch.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 			children = (
 				40790A051CDF7E8000FF6FF3 /* BinarySearch.swift */,
 				40790A0D1CDF8B3000FF6FF3 /* CommandHelper.swift */,
-				4025B2A31CDFFBC900B112AD /* SshUnlock.swift */,
+				4025B2A31CDFFBC900B112AD /* SshMac.swift */,
 				40790A091CDF7EFF00FF6FF3 /* SshUtils.swift */,
 				40790A071CDF7EF600FF6FF3 /* Utils.swift */,
 			);
@@ -379,7 +379,7 @@
 				40790A061CDF7E8000FF6FF3 /* BinarySearch.swift in Sources */,
 				4001EA591CDEDE14000D563C /* PasscodeLockConfiguration.swift in Sources */,
 				4001EA571CDEDD5E000D563C /* PasscodeRepository.swift in Sources */,
-				4025B2A41CDFFBC900B112AD /* SshUnlock.swift in Sources */,
+				4025B2A41CDFFBC900B112AD /* SshMac.swift in Sources */,
 				40790A0E1CDF8B3000FF6FF3 /* CommandHelper.swift in Sources */,
 				40E4970E1CD63E2000C1FC39 /* AppDelegate.swift in Sources */,
 				40C607261CD6BF14000C84B8 /* LocationTrackingManager.swift in Sources */,

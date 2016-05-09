@@ -33,12 +33,18 @@ class Utils {
             return executeLocalCmd(command)
         }
         
-        if command.lowercaseString.containsString("mac unlock") {
-            return SshUnlock.macUnlock(true)
-        }
-        
-        if command.lowercaseString.containsString("mac forget") {
-            return SshUnlock.macForget()
+        let macPrefix = "mac "
+        if command.lowercaseString.hasPrefix(macPrefix) {
+            if command.lowercaseString.containsString("mac unlock") {
+                return SshMac.macUnlock(true)
+            }
+            
+            if command.lowercaseString.containsString("mac forget") {
+                return SshMac.macForget()
+            }
+            
+            command.removeRange(macPrefix.startIndex ..< macPrefix.endIndex)
+            return SshMac.macCommand(true, cmd: command)
         }
         
         return SshUtils.executeSshCmd(command)

@@ -14,9 +14,13 @@ let hostToUnlockKey = "hostToUnlock"
 let hostUsernameToUnlockKey = "hostUsernameToUnlock"
 let hostPasswordToUnlockKey = "hostPasswordToUnlock"
 
-class SshUnlock {
+class SshMac {
     
     static func macUnlock(canRequireInput: Bool) -> Result<String, NSError> {
+        return macCommand(canRequireInput, cmd: "unlock")
+    }
+    
+    static func macCommand(canRequireInput: Bool, cmd: String) -> Result<String, NSError> {
         let host = KeychainWrapper.stringForKey(hostToUnlockKey)
         let username = KeychainWrapper.stringForKey(hostUsernameToUnlockKey)
         let password = KeychainWrapper.stringForKey(hostPasswordToUnlockKey)
@@ -67,9 +71,12 @@ class SshUnlock {
         }
         
         if host?.characters.count > 0 && username?.characters.count > 0 && password?.characters.count > 0 {
-            let command = "/usr/bin/python -c 'import Quartz; print Quartz.CGSessionCopyCurrentDictionary();'" +
+            var command = cmd
+            if command == "unlock" {
+                command = "/usr/bin/python -c 'import Quartz; print Quartz.CGSessionCopyCurrentDictionary();'" +
                 "| grep -q 'ScreenIsLocked = 1' || { echo 'Mac is already unlocked.'; return; }; " +
                 "osascript -e 'tell application \"System Events\"' -e 'keystroke \"\(password!)\"' -e 'delay 0.5' -e 'keystroke return' -e 'end tell'"
+            }
             let result = SshUtils.executeSshCmdWithPassword(command, host: host!, username: username!, password: password!)
             
             return result
