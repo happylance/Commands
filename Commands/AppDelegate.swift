@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let presenter = PasscodeLockPresenter(mainWindow: self.window, configuration: configuration)
         
         presenter.passcodeLockVC.dismissCompletionCallback =  {
-            SshUnlock.macUnlock(false)
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                 SshUnlock.macUnlock(false)
+            })
         }
         
         return presenter
