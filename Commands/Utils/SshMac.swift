@@ -73,7 +73,8 @@ class SshMac {
         if host?.characters.count > 0 && username?.characters.count > 0 && password?.characters.count > 0 {
             var command = cmd
             if command == "unlock" {
-                command = "/usr/bin/python -c 'import Quartz; print Quartz.CGSessionCopyCurrentDictionary();'" +
+                command = "caffeinate  -u -t 1;" +  // Wake up the screen.
+                "/usr/bin/python -c 'import Quartz; print Quartz.CGSessionCopyCurrentDictionary();'" +
                 "| grep -q 'ScreenIsLocked = 1' || { echo 'Mac is already unlocked.'; return; }; " +
                 "osascript -e 'tell application \"System Events\"' -e 'keystroke \"\(password!)\"' -e 'delay 0.5' -e 'keystroke return' -e 'end tell'"
             }
