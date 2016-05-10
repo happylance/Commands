@@ -95,7 +95,7 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-
+        
         let object = commands[indexPath.row]
         cell.textLabel!.text = object
         return cell
@@ -106,15 +106,42 @@ class MasterViewController: UITableViewController {
         return true
     }
 
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            commands.removeAtIndex(indexPath.row)
-            Constants.defaults.setObject(commands, forKey: Constants.commandsKey)
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+
+        let editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Edit", handler:{action, indexpath in
+            tableView.setEditing(false, animated: true)
+            let alert = UIAlertController(title: nil, message: "Please update your command", preferredStyle: UIAlertControllerStyle.Alert)
+            var inputTextField: UITextField?;
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+                (action)->() in
+                let command = inputTextField?.text ?? ""
+                if command.isEmpty {
+                    return
+                }
+                
+                cell?.textLabel!.text = command
+                self.commands[indexPath.row] = command
+                Constants.defaults.setObject(self.commands, forKey: Constants.commandsKey)
+                Constants.defaults.synchronize()
+            }))
+            alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+                textField.placeholder = "Enter command:"
+                textField.text = cell?.textLabel!.text
+                inputTextField = textField
+            })
+            self.presentViewController(alert, animated: true, completion: nil)
+        });
+        editRowAction.backgroundColor = UIColor.blueColor();
+        
+        let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexpath in
+            self.commands.removeAtIndex(indexPath.row)
+            Constants.defaults.setObject(self.commands, forKey: Constants.commandsKey)
             Constants.defaults.synchronize()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
+        });
+        
+        return [deleteRowAction, editRowAction];
     }
 }
 
