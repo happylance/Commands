@@ -23,15 +23,25 @@ class DetailViewController: UIViewController {
         // Update the user interface for the detail item.
         if let detail = self.detailItem {
             if let textView = self.detailTextView {
+                let cmd = detail as? String ?? "uname -a"
                 textView.textAlignment = .Left
                 textView.editable = false
-                let result = Utils.executeCmd(detail as? String ?? "uname -a")
-                switch result {
-                case .Success:
-                    textView.text = result.value
-                case .Failure:
-                    textView.text = result.error?.localizedDescription
-                }
+                textView.text = "Executing '\(cmd)' ..."
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    let result = Utils.executeCmd(cmd)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        if cmd != CommandHelper.latestCommand {
+                            print("Ingore the result of '\(cmd)' because the latest command now is '\(CommandHelper.latestCommand)'")
+                            return
+                        }
+                        switch result {
+                        case .Success:
+                            textView.text = result.value
+                        case .Failure:
+                            textView.text = result.error?.localizedDescription
+                        }
+                    })
+                })
             }
         }
     }
