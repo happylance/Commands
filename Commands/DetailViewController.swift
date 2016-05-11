@@ -34,11 +34,18 @@ class DetailViewController: UIViewController {
                             print("Ingore the result of '\(cmd)' because the latest command now is '\(CommandHelper.latestCommand)'")
                             return
                         }
+                        
+                        let animation: CATransition = CATransition()
+                        animation.duration = 0.5
+                        animation.type = kCATransitionFade
+                        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                        textView.layer.addAnimation(animation, forKey: "changeTextTransition")
+                        
                         switch result {
                         case .Success:
-                            textView.text = result.value
+                            textView.text = "\(textView.text) Done.\n\(result.value!)"
                         case .Failure:
-                            textView.text = result.error?.localizedDescription
+                            textView.text = "\(textView.text) Done.\n\(result.error?.localizedDescription)"
                         }
                     })
                 })
