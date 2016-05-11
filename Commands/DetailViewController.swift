@@ -26,7 +26,7 @@ class DetailViewController: UIViewController {
                 let cmd = detail as? String ?? "uname -a"
                 textView.textAlignment = .Left
                 textView.editable = false
-                textView.text = "Executing '\(cmd)' ..."
+                textView.text = "$ \(cmd) ..."
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                     let result = Utils.executeCmd(cmd)
                     dispatch_async(dispatch_get_main_queue(), {
@@ -43,9 +43,9 @@ class DetailViewController: UIViewController {
                         
                         switch result {
                         case .Success:
-                            textView.text = "\(textView.text) Done.\n\(result.value!)"
+                            textView.text = "$ \(cmd)\n\(result.value!)"
                         case .Failure:
-                            textView.text = "\(textView.text) Done.\n\(result.error?.localizedDescription)"
+                            textView.text = "$ \(cmd)\n\(result.error?.localizedDescription)"
                         }
                     })
                 })
