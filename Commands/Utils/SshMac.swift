@@ -26,48 +26,9 @@ class SshMac {
         let password = KeychainWrapper.stringForKey(hostPasswordToUnlockKey)
         if canRequireInput && (host == nil || username == nil || password == nil ||
             host?.characters.count == 0 || username?.characters.count == 0 || password?.characters.count == 0) {
-            let alert = UIAlertController(title: nil, message: "Please input host name, username and password", preferredStyle: UIAlertControllerStyle.Alert)
-            var hostField: UITextField?;
-            var usernameField: UITextField?;
-            var passwordField: UITextField?;
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
-                (action)->() in
-                let host = hostField?.text ?? ""
-                if host.isEmpty {
-                    return
-                }
-                
-                let username = usernameField?.text ?? ""
-                if username.isEmpty {
-                    return
-                }
-                
-                let password = passwordField?.text ?? ""
-                if password.isEmpty {
-                    return
-                }
-                
-                KeychainWrapper.setString(host, forKey: hostToUnlockKey)
-                KeychainWrapper.setString(username, forKey: hostUsernameToUnlockKey)
-                KeychainWrapper.setString(password, forKey: hostPasswordToUnlockKey)
-            }))
-            alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-                textField.placeholder = "Enter host:"
-                hostField = textField
+            dispatch_async(dispatch_get_main_queue(), { 
+                requireLoginInfo()
             })
-            alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-                textField.placeholder = "Enter username:"
-                usernameField = textField
-            })
-            alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-                textField.placeholder = "Enter password:"
-                textField.secureTextEntry = true
-                passwordField = textField
-            })
-            let rootController = UIApplication.sharedApplication().keyWindow?.rootViewController
-            if (rootController != nil) {
-                rootController!.presentViewController(alert, animated: true, completion: nil)
-            }
         }
         
         if host?.characters.count > 0 && username?.characters.count > 0 && password?.characters.count > 0 {
@@ -114,6 +75,51 @@ class SshMac {
             return .Success("There's no host to forget.")
         } else {
             return .Success("Login info for \(host!) was removed.")
+        }
+    }
+    
+    static func requireLoginInfo() {
+        let alert = UIAlertController(title: nil, message: "Please input host name, username and password", preferredStyle: UIAlertControllerStyle.Alert)
+        var hostField: UITextField?;
+        var usernameField: UITextField?;
+        var passwordField: UITextField?;
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+            (action)->() in
+            let host = hostField?.text ?? ""
+            if host.isEmpty {
+                return
+            }
+            
+            let username = usernameField?.text ?? ""
+            if username.isEmpty {
+                return
+            }
+            
+            let password = passwordField?.text ?? ""
+            if password.isEmpty {
+                return
+            }
+            
+            KeychainWrapper.setString(host, forKey: hostToUnlockKey)
+            KeychainWrapper.setString(username, forKey: hostUsernameToUnlockKey)
+            KeychainWrapper.setString(password, forKey: hostPasswordToUnlockKey)
+        }))
+        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+            textField.placeholder = "Enter host:"
+            hostField = textField
+        })
+        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+            textField.placeholder = "Enter username:"
+            usernameField = textField
+        })
+        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+            textField.placeholder = "Enter password:"
+            textField.secureTextEntry = true
+            passwordField = textField
+        })
+        let rootController = UIApplication.sharedApplication().keyWindow?.rootViewController
+        if (rootController != nil) {
+            rootController!.presentViewController(alert, animated: true, completion: nil)
         }
     }
 }
