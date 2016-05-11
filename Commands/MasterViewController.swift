@@ -108,7 +108,7 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
 
-        let editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Edit", handler:{action, indexpath in
+        let editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Edit", handler:{action, indexpath in
             tableView.setEditing(false, animated: true)
             let alert = UIAlertController(title: nil, message: "Please update your command", preferredStyle: UIAlertControllerStyle.Alert)
             var inputTextField: UITextField?;
@@ -132,7 +132,6 @@ class MasterViewController: UITableViewController {
             })
             self.presentViewController(alert, animated: true, completion: nil)
         });
-        editRowAction.backgroundColor = UIColor.blueColor();
         
         let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexpath in
             self.commands.removeAtIndex(indexPath.row)
