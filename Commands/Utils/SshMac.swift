@@ -71,13 +71,7 @@ class SshMac {
         }
         
         if host?.characters.count > 0 && username?.characters.count > 0 && password?.characters.count > 0 {
-            var command = cmd
-            if command == "unlock" {
-                command = "caffeinate  -u -t 1;" +  // Wake up the screen.
-                "/usr/bin/python -c 'import Quartz; print Quartz.CGSessionCopyCurrentDictionary();'" +
-                "| grep -q 'ScreenIsLocked = 1' || { echo 'Mac is already unlocked.'; return; }; " +
-                "osascript -e 'tell application \"System Events\"' -e 'keystroke \"\(password!)\"' -e 'delay 0.5' -e 'keystroke return' -e 'end tell'"
-            }
+            let command = getDetailCommand(cmd, password: password!)
             let result = SshUtils.executeSshCmdWithPassword(command, host: host!, username: username!, password: password!)
             
             return result
@@ -91,6 +85,21 @@ class SshMac {
             }
             
             return .Failure(NSError(domain:"Commands", code: 111, userInfo: [NSLocalizedDescriptionKey : "Password is not set"]))
+        }
+    }
+    
+    static func getDetailCommand(cmd: String, password: String) -> String {
+        switch cmd {
+        case "unlock":
+            return "caffeinate  -u -t 1;" +  // Wake up the screen.
+                "d=$(/usr/bin/python -c 'import Quartz; print Quartz.CGSessionCopyCurrentDictionary()');" +
+                "echo $d | grep -q 'OnConsoleKey = 0' && { echo 'Sorry that you have unlock manually.'; echo $d; return; };" +
+                "echo $d | grep -q 'ScreenIsLocked = 1' || { echo 'Mac is already unlocked.'; return; }; " +
+                "osascript -e 'tell application \"System Events\"' -e 'keystroke \"\(password)\"' -e 'delay 0.5' -e 'keystroke return' -e 'end tell'"
+        case "sleep":
+            return "osascript -e 'tell application \"Finder\" to sleep'"
+        default:
+            return cmd;
         }
     }
     
