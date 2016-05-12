@@ -45,7 +45,7 @@ class DetailViewController: UIViewController {
                         case .Success:
                             textView.text = "$ \(cmd)\n\(result.value!)"
                         case .Failure:
-                            textView.text = "$ \(cmd)\n\(result.error?.localizedDescription)"
+                            textView.text = "$ \(cmd)\n\(result.error?.localizedDescription ?? "")"
                         }
                     })
                 })
