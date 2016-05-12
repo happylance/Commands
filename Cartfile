@@ -1,4 +1,4 @@
 github "NMSSH/NMSSH"
 github "antitypical/Result"
-github "velikanov/SwiftPasscodeLock"
+github "velikanov/SwiftPasscodeLock" "master"
 github "jrendel/SwiftKeychainWrapper"
