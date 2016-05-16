@@ -11,7 +11,7 @@
 		4001EA591CDEDE14000D563C /* PasscodeLockConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4001EA581CDEDE14000D563C /* PasscodeLockConfiguration.swift */; };
 		4001EA5E1CDEE183000D563C /* config in Resources */ = {isa = PBXBuildFile; fileRef = 4001EA5B1CDEE183000D563C /* config */; };
 		4001EA5F1CDEE183000D563C /* ec2.pem in Resources */ = {isa = PBXBuildFile; fileRef = 4001EA5C1CDEE183000D563C /* ec2.pem */; };
-		4001EA621CDEE19D000D563C /* .passcode in Resources */ = {isa = PBXBuildFile; fileRef = 4001EA611CDEE19D000D563C /* .passcode */; };
+		401263961CE77E2700FAE75C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401263951CE77E2700FAE75C /* Constants.swift */; };
 		4025B2A21CDFC49700B112AD /* SwiftKeychainWrapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4025B2A11CDFC49700B112AD /* SwiftKeychainWrapper.framework */; };
 		4025B2A41CDFFBC900B112AD /* SshMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025B2A31CDFFBC900B112AD /* SshMac.swift */; };
 		40422F7E1CD975240019EBC6 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40422F7D1CD975240019EBC6 /* Result.framework */; };
@@ -54,7 +54,7 @@
 		4001EA581CDEDE14000D563C /* PasscodeLockConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeLockConfiguration.swift; path = PasscodeLock/PasscodeLockConfiguration.swift; sourceTree = "<group>"; };
 		4001EA5B1CDEE183000D563C /* config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = config; path = Resources/.ssh/config; sourceTree = "<group>"; };
 		4001EA5C1CDEE183000D563C /* ec2.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ec2.pem; path = Resources/.ssh/ec2.pem; sourceTree = "<group>"; };
-		4001EA611CDEE19D000D563C /* .passcode */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .passcode; path = Resources/.passcode; sourceTree = "<group>"; };
+		401263951CE77E2700FAE75C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4025B2A11CDFC49700B112AD /* SwiftKeychainWrapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftKeychainWrapper.framework; path = Carthage/Build/iOS/SwiftKeychainWrapper.framework; sourceTree = "<group>"; };
 		4025B2A31CDFFBC900B112AD /* SshMac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SshMac.swift; path = Utils/SshMac.swift; sourceTree = "<group>"; };
 		40422F7D1CD975240019EBC6 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
@@ -117,7 +117,6 @@
 				40E497131CD63E2000C1FC39 /* Main.storyboard */,
 				40E497181CD63E2000C1FC39 /* LaunchScreen.storyboard */,
 				40E4971B1CD63E2000C1FC39 /* Info.plist */,
-				4001EA611CDEE19D000D563C /* .passcode */,
 				40E497401CD64A7D00C1FC39 /* .ssh */,
 			);
 			name = Resources;
@@ -175,6 +174,7 @@
 				409D44211CDEDCD9005008DF /* PasscodeLock */,
 				40790A041CDF7E5500FF6FF3 /* Utils */,
 				40E4970D1CD63E2000C1FC39 /* AppDelegate.swift */,
+				401263951CE77E2700FAE75C /* Constants.swift */,
 				40E497111CD63E2000C1FC39 /* DetailViewController.swift */,
 				40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */,
 				40E4970F1CD63E2000C1FC39 /* MasterViewController.swift */,
@@ -324,7 +324,6 @@
 			files = (
 				4001EA5E1CDEE183000D563C /* config in Resources */,
 				4001EA5F1CDEE183000D563C /* ec2.pem in Resources */,
-				4001EA621CDEE19D000D563C /* .passcode in Resources */,
 				40E4971A1CD63E2000C1FC39 /* LaunchScreen.storyboard in Resources */,
 				40E497171CD63E2000C1FC39 /* Assets.xcassets in Resources */,
 				40E497151CD63E2000C1FC39 /* Main.storyboard in Resources */,
@@ -383,6 +382,7 @@
 				40790A0E1CDF8B3000FF6FF3 /* CommandHelper.swift in Sources */,
 				40E4970E1CD63E2000C1FC39 /* AppDelegate.swift in Sources */,
 				40C607261CD6BF14000C84B8 /* LocationTrackingManager.swift in Sources */,
+				401263961CE77E2700FAE75C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

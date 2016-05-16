@@ -8,38 +8,26 @@
 
 import Foundation
 import PasscodeLock
+import SwiftKeychainWrapper
 
 class PasscodeRepository: PasscodeRepositoryType {
     
-    private let passcodeKey = "automation.lock.passcode"
-    
-    private lazy var passcodeString: String = {
-        let passcodeFilePath = NSBundle.mainBundle().pathForResource(".passcode", ofType: nil);
-
-        var passcode : String = ""
-        do
-        {
-            passcode = try String(contentsOfFile: passcodeFilePath!)
-        }
-        catch
-        {
-            passcode = ""
-        }
-    
-        return passcode
-    }()
+    private let passcodeKey = "commands.lock.passcode"
     
     var hasPasscode: Bool {
-        return true
+        return passcode != nil
     }
     
     var passcode: [String]? {
-        return passcodeString.characters.map{String($0)}
+        return KeychainWrapper.stringForKey(passcodeKey)?.characters.map{String($0)}
     }
     
     func savePasscode(passcode: [String]) {
+        let passcodeString = passcode.reduce("") {"\($0)\($1)"}
+        KeychainWrapper.setString(passcodeString, forKey: passcodeKey)
     }
     
     func deletePasscode() {
+        KeychainWrapper.removeObjectForKey(passcodeKey)
     }
 }

@@ -12,17 +12,24 @@ class DetailViewController: UIViewController {
 
     @IBOutlet var detailTextView: UITextView!
 
+    var isConfigured = false
     var detailItem: AnyObject? {
         didSet {
             // Update the view.
+            isConfigured = false
             self.configureView()
         }
     }
 
     func configureView() {
+        if isConfigured {
+            return
+        }
+        
         // Update the user interface for the detail item.
         if let detail = self.detailItem {
             if let textView = self.detailTextView {
+                isConfigured = true
                 let cmd = detail as? String ?? "uname -a"
                 textView.textAlignment = .Left
                 textView.editable = false
@@ -31,7 +38,7 @@ class DetailViewController: UIViewController {
                     let result = Utils.executeCmd(cmd)
                     dispatch_async(dispatch_get_main_queue(), {
                         if cmd != CommandHelper.latestCommand {
-                            print("Ingore the result of '\(cmd)' because the latest command now is '\(CommandHelper.latestCommand)'")
+                            print("Ignore the result of '\(cmd)' because the latest command now is '\(CommandHelper.latestCommand)'")
                             return
                         }
                         
@@ -56,7 +63,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.configureView()
+        self.detailTextView.text = ""
+        configureView()
     }
 
     override func didReceiveMemoryWarning() {

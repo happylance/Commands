@@ -37,7 +37,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
         
-        passcodeLockPresenter.presentPasscodeLock()
+        let configuration = PasscodeLockConfiguration()
+        if configuration.repository.passcode == nil {
+            dispatch_async(dispatch_get_main_queue(), { 
+                let passcodeVC = PasscodeLockViewController(state: .SetPasscode, configuration: configuration)
+                self.window?.rootViewController?.presentViewController(passcodeVC, animated: true, completion: nil)
+            })
+        } else {
+            passcodeLockPresenter.presentPasscodeLock()
+        }
         
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)

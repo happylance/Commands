@@ -8,11 +8,6 @@
 
 import UIKit
 
-struct Constants {
-    static let commandsKey = "Commands"
-    static let defaults = NSUserDefaults.standardUserDefaults()
-}
-
 class MasterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     var commands = (Constants.defaults.arrayForKey(Constants.commandsKey) as? [String]) ?? [String]()
