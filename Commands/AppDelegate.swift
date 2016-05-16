@@ -9,7 +9,6 @@
 import UIKit
 import AVFoundation
 import PasscodeLock
-import SwiftKeychainWrapper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -46,6 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         } else {
             passcodeLockPresenter.presentPasscodeLock()
         }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(resetPassword), name: PasscodeLockIncorrectPasscodeNotification, object: nil)
         
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -145,6 +146,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             return true
         }
         return false
+    }
+
+    func resetPassword() {
+        // For security, clear mac login info from keychain.
+        SshMac.macForget()
+        
+        let configuration = PasscodeLockConfiguration()
+        configuration.repository.deletePasscode()
+        passcodeLockPresenter.dismissPasscodeLock()
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            let passcodeVC = PasscodeLockViewController(state: .SetPasscode, configuration: configuration)
+            self.window?.rootViewController?.presentViewController(passcodeVC, animated: true, completion: {
+                Utils.showAlertWithMessage("Please reset your password", msg: "Too many incorrect password attmpts", controller: passcodeVC)
+            })
+        })
     }
 
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Liu Liang. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import AVFoundation
 import Result
 
@@ -65,5 +65,11 @@ class Utils {
         } else {
             return .Failure(NSError(domain:"Commands", code: 121, userInfo: [NSLocalizedDescriptionKey : "This command is not supported."]))
         }
+    }
+    
+    static func showAlertWithMessage(title: String, msg: String, controller: UIViewController, completion: (() -> Void)? = nil, handler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:nil))
+        controller.presentViewController(alert, animated: true, completion: completion)
     }
 }
