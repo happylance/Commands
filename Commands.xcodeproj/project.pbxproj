@@ -278,7 +278,6 @@
 				TargetAttributes = {
 					40E497091CD63E2000C1FC39 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 7YC8KN9YF3;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -526,13 +525,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Commands/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = debug.Lance.Commands;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nlprliu.commands;
 				PRODUCT_NAME = Commands;
 			};
 			name = Debug;
@@ -541,13 +541,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Commands/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Lance.Commands;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nlprliu.commands;
 				PRODUCT_NAME = Commands;
 			};
 			name = Release;
