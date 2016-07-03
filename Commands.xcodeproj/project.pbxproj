@@ -20,7 +20,6 @@
 		40790A081CDF7EF600FF6FF3 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40790A071CDF7EF600FF6FF3 /* Utils.swift */; };
 		40790A0A1CDF7EFF00FF6FF3 /* SshUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40790A091CDF7EFF00FF6FF3 /* SshUtils.swift */; };
 		40790A0E1CDF8B3000FF6FF3 /* CommandHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40790A0D1CDF8B3000FF6FF3 /* CommandHelper.swift */; };
-		40C607261CD6BF14000C84B8 /* LocationTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */; };
 		40E4970E1CD63E2000C1FC39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E4970D1CD63E2000C1FC39 /* AppDelegate.swift */; };
 		40E497101CD63E2000C1FC39 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E4970F1CD63E2000C1FC39 /* MasterViewController.swift */; };
 		40E497121CD63E2000C1FC39 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E497111CD63E2000C1FC39 /* DetailViewController.swift */; };
@@ -63,7 +62,6 @@
 		40790A071CDF7EF600FF6FF3 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
 		40790A091CDF7EFF00FF6FF3 /* SshUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SshUtils.swift; path = Utils/SshUtils.swift; sourceTree = "<group>"; };
 		40790A0D1CDF8B3000FF6FF3 /* CommandHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandHelper.swift; path = Utils/CommandHelper.swift; sourceTree = "<group>"; };
-		40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTrackingManager.swift; sourceTree = "<group>"; };
 		40E4970A1CD63E2000C1FC39 /* Commands.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Commands.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40E4970D1CD63E2000C1FC39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40E4970F1CD63E2000C1FC39 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -176,7 +174,6 @@
 				40E4970D1CD63E2000C1FC39 /* AppDelegate.swift */,
 				401263951CE77E2700FAE75C /* Constants.swift */,
 				40E497111CD63E2000C1FC39 /* DetailViewController.swift */,
-				40C607251CD6BF14000C84B8 /* LocationTrackingManager.swift */,
 				40E4970F1CD63E2000C1FC39 /* MasterViewController.swift */,
 			);
 			path = Commands;
@@ -380,7 +377,6 @@
 				4025B2A41CDFFBC900B112AD /* SshMac.swift in Sources */,
 				40790A0E1CDF8B3000FF6FF3 /* CommandHelper.swift in Sources */,
 				40E4970E1CD63E2000C1FC39 /* AppDelegate.swift in Sources */,
-				40C607261CD6BF14000C84B8 /* LocationTrackingManager.swift in Sources */,
 				401263961CE77E2700FAE75C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
