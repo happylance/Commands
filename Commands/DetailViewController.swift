@@ -13,7 +13,7 @@ class DetailViewController: UIViewController {
     @IBOutlet var detailTextView: UITextView!
 
     var isConfigured = false
-    var detailItem: AnyObject? {
+    var detailItem: String? {
         didSet {
             // Update the view.
             isConfigured = false
@@ -30,13 +30,13 @@ class DetailViewController: UIViewController {
         if let detail = self.detailItem {
             if let textView = self.detailTextView {
                 isConfigured = true
-                let cmd = detail as? String ?? "uname -a"
-                textView.textAlignment = .Left
-                textView.editable = false
+                let cmd = detail
+                textView.textAlignment = .left
+                textView.isEditable = false
                 textView.text = "$ \(cmd) ..."
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async(execute: {
                     let result = Utils.executeCmd(cmd)
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         if cmd != CommandHelper.latestCommand {
                             print("Ignore the result of '\(cmd)' because the latest command now is '\(CommandHelper.latestCommand)'")
                             return
@@ -46,12 +46,12 @@ class DetailViewController: UIViewController {
                         animation.duration = 0.5
                         animation.type = kCATransitionFade
                         animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-                        textView.layer.addAnimation(animation, forKey: "changeTextTransition")
+                        textView.layer.add(animation, forKey: "changeTextTransition")
                         
                         switch result {
-                        case .Success:
+                        case .success:
                             textView.text = "$ \(cmd)\n\(result.value!)"
-                        case .Failure:
+                        case .failure:
                             textView.text = "$ \(cmd)\n\(result.error?.localizedDescription ?? "")"
                         }
                     })

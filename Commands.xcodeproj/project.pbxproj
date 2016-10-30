@@ -7,15 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4001EA571CDEDD5E000D563C /* PasscodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4001EA561CDEDD5E000D563C /* PasscodeRepository.swift */; };
-		4001EA591CDEDE14000D563C /* PasscodeLockConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4001EA581CDEDE14000D563C /* PasscodeLockConfiguration.swift */; };
 		4001EA5E1CDEE183000D563C /* config in Resources */ = {isa = PBXBuildFile; fileRef = 4001EA5B1CDEE183000D563C /* config */; };
 		4001EA5F1CDEE183000D563C /* ec2.pem in Resources */ = {isa = PBXBuildFile; fileRef = 4001EA5C1CDEE183000D563C /* ec2.pem */; };
 		401263961CE77E2700FAE75C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401263951CE77E2700FAE75C /* Constants.swift */; };
 		4025B2A21CDFC49700B112AD /* SwiftKeychainWrapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4025B2A11CDFC49700B112AD /* SwiftKeychainWrapper.framework */; };
 		4025B2A41CDFFBC900B112AD /* SshMac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4025B2A31CDFFBC900B112AD /* SshMac.swift */; };
 		40422F7E1CD975240019EBC6 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40422F7D1CD975240019EBC6 /* Result.framework */; };
-		40422F821CD99C390019EBC6 /* PasscodeLock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40422F811CD99C390019EBC6 /* PasscodeLock.framework */; };
 		40790A061CDF7E8000FF6FF3 /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40790A051CDF7E8000FF6FF3 /* BinarySearch.swift */; };
 		40790A081CDF7EF600FF6FF3 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40790A071CDF7EF600FF6FF3 /* Utils.swift */; };
 		40790A0A1CDF7EFF00FF6FF3 /* SshUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40790A091CDF7EFF00FF6FF3 /* SshUtils.swift */; };
@@ -49,15 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4001EA561CDEDD5E000D563C /* PasscodeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeRepository.swift; path = PasscodeLock/PasscodeRepository.swift; sourceTree = "<group>"; };
-		4001EA581CDEDE14000D563C /* PasscodeLockConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasscodeLockConfiguration.swift; path = PasscodeLock/PasscodeLockConfiguration.swift; sourceTree = "<group>"; };
 		4001EA5B1CDEE183000D563C /* config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = config; path = Resources/.ssh/config; sourceTree = "<group>"; };
 		4001EA5C1CDEE183000D563C /* ec2.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ec2.pem; path = Resources/.ssh/ec2.pem; sourceTree = "<group>"; };
 		401263951CE77E2700FAE75C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4025B2A11CDFC49700B112AD /* SwiftKeychainWrapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftKeychainWrapper.framework; path = Carthage/Build/iOS/SwiftKeychainWrapper.framework; sourceTree = "<group>"; };
 		4025B2A31CDFFBC900B112AD /* SshMac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SshMac.swift; path = Utils/SshMac.swift; sourceTree = "<group>"; };
 		40422F7D1CD975240019EBC6 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
-		40422F811CD99C390019EBC6 /* PasscodeLock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PasscodeLock.framework; path = Carthage/Build/iOS/PasscodeLock.framework; sourceTree = "<group>"; };
 		40790A051CDF7E8000FF6FF3 /* BinarySearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BinarySearch.swift; path = Utils/BinarySearch.swift; sourceTree = "<group>"; };
 		40790A071CDF7EF600FF6FF3 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
 		40790A091CDF7EFF00FF6FF3 /* SshUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SshUtils.swift; path = Utils/SshUtils.swift; sourceTree = "<group>"; };
@@ -86,7 +80,6 @@
 			files = (
 				4025B2A21CDFC49700B112AD /* SwiftKeychainWrapper.framework in Frameworks */,
 				40E4973E1CD63F6000C1FC39 /* NMSSH.framework in Frameworks */,
-				40422F821CD99C390019EBC6 /* PasscodeLock.framework in Frameworks */,
 				40422F7E1CD975240019EBC6 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,20 +125,10 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
-		409D44211CDEDCD9005008DF /* PasscodeLock */ = {
-			isa = PBXGroup;
-			children = (
-				4001EA581CDEDE14000D563C /* PasscodeLockConfiguration.swift */,
-				4001EA561CDEDD5E000D563C /* PasscodeRepository.swift */,
-			);
-			name = PasscodeLock;
-			sourceTree = "<group>";
-		};
 		40E497011CD63E2000C1FC39 = {
 			isa = PBXGroup;
 			children = (
 				4025B2A11CDFC49700B112AD /* SwiftKeychainWrapper.framework */,
-				40422F811CD99C390019EBC6 /* PasscodeLock.framework */,
 				40422F7D1CD975240019EBC6 /* Result.framework */,
 				40E4973D1CD63F6000C1FC39 /* NMSSH.framework */,
 				40E4970C1CD63E2000C1FC39 /* Commands */,
@@ -169,7 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				4001EA5A1CDEE0C6000D563C /* Resources */,
-				409D44211CDEDCD9005008DF /* PasscodeLock */,
 				40790A041CDF7E5500FF6FF3 /* Utils */,
 				40E4970D1CD63E2000C1FC39 /* AppDelegate.swift */,
 				401263951CE77E2700FAE75C /* Constants.swift */,
@@ -275,6 +257,8 @@
 				TargetAttributes = {
 					40E497091CD63E2000C1FC39 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = PWZTK547J6;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -284,11 +268,13 @@
 					40E4971F1CD63E2000C1FC39 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 7YC8KN9YF3;
+						LastSwiftMigration = 0810;
 						TestTargetID = 40E497091CD63E2000C1FC39;
 					};
 					40E4972A1CD63E2000C1FC39 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 7YC8KN9YF3;
+						LastSwiftMigration = 0810;
 						TestTargetID = 40E497091CD63E2000C1FC39;
 					};
 				};
@@ -351,7 +337,6 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/NMSSH.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/PasscodeLock.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftKeychainWrapper.framework",
 			);
 			outputPaths = (
@@ -372,8 +357,6 @@
 				40E497101CD63E2000C1FC39 /* MasterViewController.swift in Sources */,
 				40790A081CDF7EF600FF6FF3 /* Utils.swift in Sources */,
 				40790A061CDF7E8000FF6FF3 /* BinarySearch.swift in Sources */,
-				4001EA591CDEDE14000D563C /* PasscodeLockConfiguration.swift in Sources */,
-				4001EA571CDEDD5E000D563C /* PasscodeRepository.swift in Sources */,
 				4025B2A41CDFFBC900B112AD /* SshMac.swift in Sources */,
 				40790A0E1CDF8B3000FF6FF3 /* CommandHelper.swift in Sources */,
 				40E4970E1CD63E2000C1FC39 /* AppDelegate.swift in Sources */,
@@ -522,6 +505,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = PWZTK547J6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -530,6 +514,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nlprliu.commands;
 				PRODUCT_NAME = Commands;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -538,6 +523,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = PWZTK547J6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -546,6 +532,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nlprliu.commands;
 				PRODUCT_NAME = Commands;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -557,6 +544,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Lance.CommandsTests;
 				PRODUCT_NAME = Commands;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Commands.app/Commands";
 			};
 			name = Debug;
@@ -569,6 +557,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Lance.CommandsTests;
 				PRODUCT_NAME = Commands;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Commands.app/Commands";
 			};
 			name = Release;
@@ -580,6 +569,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Lance.CommandsUITests;
 				PRODUCT_NAME = Commands;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Commands;
 			};
 			name = Debug;
@@ -591,6 +581,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Lance.CommandsUITests;
 				PRODUCT_NAME = Commands;
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Commands;
 			};
 			name = Release;

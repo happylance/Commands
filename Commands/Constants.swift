@@ -10,5 +10,5 @@ import Foundation
 
 struct Constants {
     static let commandsKey = "Commands"
-    static let defaults = NSUserDefaults.standardUserDefaults()
+    static let defaults = UserDefaults.standard
 }

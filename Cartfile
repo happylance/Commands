@@ -1,4 +1,4 @@
 github "NMSSH/NMSSH"
 github "antitypical/Result"
-github "happylance/SwiftPasscodeLock" "master"
+github "codeOfRobin/simple-touch" "master"
 github "jrendel/SwiftKeychainWrapper"

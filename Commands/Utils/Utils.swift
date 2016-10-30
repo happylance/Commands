@@ -11,65 +11,65 @@ import AVFoundation
 import Result
 
 class Utils {
-    static func sayCN(text: String) {
+    static func sayCN(_ text: String) {
         let synthesizer = AVSpeechSynthesizer()
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: "zh-CN")
-        synthesizer.speakUtterance(utterance)
+        synthesizer.speak(utterance)
     }
     
     static func getTime() -> String {
-        let dateFormat = NSDateFormatter()
+        let dateFormat = DateFormatter()
         dateFormat.dateFormat = "h:mm a"
-        let time = dateFormat.stringFromDate(NSDate())
+        let time = dateFormat.string(from: Date())
         return time
     }
     
-    static func executeCmd(cmd: String) -> Result<String, NSError> {
+    static func executeCmd(_ cmd: String) -> Result<String, NSError> {
         var command = cmd
         let localPrefix = "local "
         if command.hasPrefix(localPrefix) {
-            command.removeRange(localPrefix.startIndex ..< localPrefix.endIndex)
+            command.removeSubrange(localPrefix.characters.startIndex..<localPrefix.characters.endIndex)
             return executeLocalCmd(command)
         }
         
         let macPrefix = "mac "
-        if command.lowercaseString.hasPrefix(macPrefix) {
-            if command.lowercaseString.containsString("mac unlock") {
+        if command.lowercased().hasPrefix(macPrefix) {
+            if command.lowercased().contains("mac unlock") {
                 return SshMac.macUnlock(true)
             }
             
-            if command.lowercaseString.containsString("mac forget") {
+            if command.lowercased().contains("mac forget") {
                 return SshMac.macForget()
             }
             
-            command.removeRange(macPrefix.startIndex ..< macPrefix.endIndex)
+            command.removeSubrange(macPrefix.characters.startIndex..<macPrefix.characters.endIndex)
             return SshMac.macCommand(true, cmd: command)
         }
         
         return SshUtils.executeSshCmd(command)
     }
     
-    static func executeLocalCmd(cmd: String) -> Result<String, NSError> {
+    static func executeLocalCmd(_ cmd: String) -> Result<String, NSError> {
         var command = cmd
         let sayPrefix = "say "
         if command.hasPrefix(sayPrefix) {
-            command.removeRange(sayPrefix.startIndex ..< sayPrefix.endIndex)
+            command.removeSubrange(sayPrefix.characters.startIndex..<sayPrefix.characters.endIndex)
             
             if command == "time" {
                 command = "亮哥，现在时间\(Utils.getTime())"
             }
             
             Utils.sayCN(command)
-            return .Success("")
+            return .success("")
         } else {
-            return .Failure(NSError(domain:"Commands", code: 121, userInfo: [NSLocalizedDescriptionKey : "This command is not supported."]))
+            return .failure(NSError(domain:"Commands", code: 121, userInfo: [NSLocalizedDescriptionKey : "This command is not supported."]))
         }
     }
     
-    static func showAlertWithMessage(title: String, msg: String, controller: UIViewController, completion: (() -> Void)? = nil, handler: ((UIAlertAction) -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:nil))
-        controller.presentViewController(alert, animated: true, completion: completion)
+    static func showAlertWithMessage(_ title: String, msg: String, controller: UIViewController, completion: (() -> Void)? = nil, handler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:nil))
+        controller.present(alert, animated: true, completion: completion)
     }
 }

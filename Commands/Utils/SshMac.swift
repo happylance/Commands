@@ -9,6 +9,30 @@
 import Foundation
 import Result
 import SwiftKeychainWrapper
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 let hostToUnlockKey = "hostToUnlock"
 let hostUsernameToUnlockKey = "hostUsernameToUnlock"
@@ -16,17 +40,17 @@ let hostPasswordToUnlockKey = "hostPasswordToUnlock"
 
 class SshMac {
     
-    static func macUnlock(canRequireInput: Bool) -> Result<String, NSError> {
+    static func macUnlock(_ canRequireInput: Bool) -> Result<String, NSError> {
         return macCommand(canRequireInput, cmd: "unlock")
     }
     
-    static func macCommand(canRequireInput: Bool, cmd: String) -> Result<String, NSError> {
-        let host = KeychainWrapper.stringForKey(hostToUnlockKey)
-        let username = KeychainWrapper.stringForKey(hostUsernameToUnlockKey)
-        let password = KeychainWrapper.stringForKey(hostPasswordToUnlockKey)
+    static func macCommand(_ canRequireInput: Bool, cmd: String) -> Result<String, NSError> {
+        let host = KeychainWrapper.standard.string(forKey: hostToUnlockKey)
+        let username = KeychainWrapper.standard.string(forKey: hostUsernameToUnlockKey)
+        let password = KeychainWrapper.standard.string(forKey: hostPasswordToUnlockKey)
         if canRequireInput && (host == nil || username == nil || password == nil ||
             host?.characters.count == 0 || username?.characters.count == 0 || password?.characters.count == 0) {
-            dispatch_async(dispatch_get_main_queue(), { 
+            DispatchQueue.main.async(execute: { 
                 requireLoginInfo()
             })
         }
@@ -38,18 +62,18 @@ class SshMac {
             return result
         } else {
             if host == nil || host?.characters.count == 0 {
-                return .Failure(NSError(domain:"Commands", code: 111, userInfo: [NSLocalizedDescriptionKey : "Host is not set"]))
+                return .failure(NSError(domain:"Commands", code: 111, userInfo: [NSLocalizedDescriptionKey : "Host is not set"]))
             }
             
             if username == nil || username?.characters.count == 0 {
-                return .Failure(NSError(domain:"Commands", code: 111, userInfo: [NSLocalizedDescriptionKey : "Username is not set"]))
+                return .failure(NSError(domain:"Commands", code: 111, userInfo: [NSLocalizedDescriptionKey : "Username is not set"]))
             }
             
-            return .Failure(NSError(domain:"Commands", code: 111, userInfo: [NSLocalizedDescriptionKey : "Password is not set"]))
+            return .failure(NSError(domain:"Commands", code: 111, userInfo: [NSLocalizedDescriptionKey : "Password is not set"]))
         }
     }
     
-    static func getDetailCommand(cmd: String, password: String) -> String {
+    static func getDetailCommand(_ cmd: String, password: String) -> String {
         switch cmd {
         case "unlock":
             return "caffeinate  -u -t 1;" +  // Wake up the screen.
@@ -65,25 +89,25 @@ class SshMac {
     }
     
     static func macForget() -> Result<String, NSError> {
-        let host = KeychainWrapper.stringForKey(hostToUnlockKey)
+        let host = KeychainWrapper.standard.string(forKey: hostToUnlockKey)
         
-        KeychainWrapper.removeObjectForKey(hostToUnlockKey)
-        KeychainWrapper.removeObjectForKey(hostUsernameToUnlockKey)
-        KeychainWrapper.removeObjectForKey(hostPasswordToUnlockKey)
+        KeychainWrapper.standard.removeObject(forKey: hostToUnlockKey)
+        KeychainWrapper.standard.removeObject(forKey: hostUsernameToUnlockKey)
+        KeychainWrapper.standard.removeObject(forKey: hostPasswordToUnlockKey)
         
         if host == nil || host?.characters.count == 0 {
-            return .Success("There's no host to forget.")
+            return .success("There's no host to forget.")
         } else {
-            return .Success("Login info for \(host!) was removed.")
+            return .success("Login info for \(host!) was removed.")
         }
     }
     
     static func requireLoginInfo() {
-        let alert = UIAlertController(title: nil, message: "Please input host name, username and password", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: nil, message: "Please input host name, username and password", preferredStyle: UIAlertControllerStyle.alert)
         var hostField: UITextField?;
         var usernameField: UITextField?;
         var passwordField: UITextField?;
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler:{
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
             (action)->() in
             let host = hostField?.text ?? ""
             if host.isEmpty {
@@ -100,26 +124,26 @@ class SshMac {
                 return
             }
             
-            KeychainWrapper.setString(host, forKey: hostToUnlockKey)
-            KeychainWrapper.setString(username, forKey: hostUsernameToUnlockKey)
-            KeychainWrapper.setString(password, forKey: hostPasswordToUnlockKey)
+            KeychainWrapper.standard.set(host, forKey: hostToUnlockKey)
+            KeychainWrapper.standard.set(username, forKey: hostUsernameToUnlockKey)
+            KeychainWrapper.standard.set(password, forKey: hostPasswordToUnlockKey)
         }))
-        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+        alert.addTextField(configurationHandler: {(textField: UITextField!) in
             textField.placeholder = "Enter host:"
             hostField = textField
         })
-        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+        alert.addTextField(configurationHandler: {(textField: UITextField!) in
             textField.placeholder = "Enter username:"
             usernameField = textField
         })
-        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+        alert.addTextField(configurationHandler: {(textField: UITextField!) in
             textField.placeholder = "Enter password:"
-            textField.secureTextEntry = true
+            textField.isSecureTextEntry = true
             passwordField = textField
         })
-        let rootController = UIApplication.sharedApplication().keyWindow?.rootViewController
+        let rootController = UIApplication.shared.keyWindow?.rootViewController
         if (rootController != nil) {
-            rootController!.presentViewController(alert, animated: true, completion: nil)
+            rootController!.present(alert, animated: true, completion: nil)
         }
     }
 }

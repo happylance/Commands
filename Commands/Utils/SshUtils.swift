@@ -11,66 +11,72 @@ import NMSSH
 import Result
 
 class SshUtils {
-    static func executeSshCmd(command: String) -> Result<String, NSError> {
-        let configFilePath = NSBundle.mainBundle().pathForResource("config", ofType: nil);
-        let config = NMSSHConfig(fromFile:configFilePath)
+    static func executeSshCmd(_ command: String) -> Result<String, NSError> {
+        let configFilePath = Bundle.main.path(forResource: "config", ofType: nil);
+        guard let config = NMSSHConfig(fromFile:configFilePath) else {
+            return .failure(NSError(domain:"Commands", code: 101, userInfo: [NSLocalizedDescriptionKey : "Failed to create NMSSHConfig"]))
+        }
         
-        let session = NMSSHSession(host:"ec2", configs:[config], withDefaultPort: 22, defaultUsername: "ubuntu")
+        guard let session = NMSSHSession(host:"ec2", configs:[config], withDefaultPort: 22, defaultUsername: "ubuntu") else {
+            return .failure(NSError(domain:"Commands", code: 101, userInfo: [NSLocalizedDescriptionKey : "Failed to create NMSSHSession"]))
+        }
+
         session.connect()
-        if session.connected {
-            let privateKey = NSBundle.mainBundle().pathForResource("ec2", ofType: "pem");
-            session.authenticateByPublicKey(nil, privateKey: privateKey, andPassword: nil)
-            if (session.authorized) {
+        if session.isConnected {
+            let privateKey = Bundle.main.path(forResource: "ec2", ofType: "pem");
+            session.authenticate(byPublicKey: nil, privateKey: privateKey, andPassword: nil)
+            if session.isAuthorized {
                 print("Authentication succeeded");
             } else {
-                return .Failure(NSError(domain:"Commands", code: 101, userInfo: [NSLocalizedDescriptionKey : "Authentication failed"]))
+                return .failure(NSError(domain:"Commands", code: 101, userInfo: [NSLocalizedDescriptionKey : "Authentication failed"]))
             }
         } else {
-            return .Failure(NSError(domain:"Commands", code: 102, userInfo: [NSLocalizedDescriptionKey : "Connection failed"]))
+            return .failure(NSError(domain:"Commands", code: 102, userInfo: [NSLocalizedDescriptionKey : "Connection failed"]))
         }
         
         var error : NSError? = nil
-        let response = session.channel.execute(command, error:&error, timeout:10)
+        let response = session.channel.execute(command, error:&error, timeout:10) ?? ""
         if let error = error {
             print(error)
-            return .Failure(error)
+            return .failure(error)
         }
         
-        print(response)
         session.disconnect()
-        return .Success(response)
+        return .success(response)
     }
     
-    static func executeSshCmdWithPassword(command: String, host: String, username: String, password: String) -> Result<String, NSError> {
+    static func executeSshCmdWithPassword(_ command: String, host: String, username: String, password: String) -> Result<String, NSError> {
+        guard let session = NMSSHSession(host:host, andUsername:username) else {
+            return .failure(NSError(domain:"Commands", code: 101, userInfo: [NSLocalizedDescriptionKey : "Failed to create NMSSHSession"]))
+        }
         
-        let session = NMSSHSession(host:host, andUsername:username)
         session.connect()
-        if session.connected {
-            session.authenticateByKeyboardInteractiveUsingBlock({ (request: String!) -> String! in
+        if session.isConnected {
+            session.authenticateByKeyboardInteractive({
+                (request : String?) -> String? in
                 return password
             })
-            if (session.authorized) {
+            if (session.isAuthorized) {
                 print("Authentication succeeded");
             } else {
-                return .Failure(NSError(domain:"Commands", code: 101, userInfo: [NSLocalizedDescriptionKey : "Authentication failed"]))
+                return .failure(NSError(domain:"Commands", code: 101, userInfo: [NSLocalizedDescriptionKey : "Authentication failed"]))
             }
         } else {
-            return .Failure(NSError(domain:"Commands", code: 102, userInfo: [NSLocalizedDescriptionKey : "Connection failed"]))
+            return .failure(NSError(domain:"Commands", code: 102, userInfo: [NSLocalizedDescriptionKey : "Connection failed"]))
         }
         
         var error : NSError? = nil
-        let logLevel = NMSSHLogger.sharedLogger().logLevel
-        NMSSHLogger.sharedLogger().logLevel = .Error
-        let response = session.channel.execute(command, error:&error, timeout:10)
-        NMSSHLogger.sharedLogger().logLevel = logLevel
+        let logLevel = NMSSHLogger.shared().logLevel
+        NMSSHLogger.shared().logLevel = .error
+        let response = session.channel.execute(command, error:&error, timeout:10) ?? ""
+        NMSSHLogger.shared().logLevel = logLevel
         if let error = error {
             print(error)
-            return .Failure(error)
+            return .failure(error)
         }
         
-        print(response)
         session.disconnect()
-        return .Success(response)
+        return .success(response)
     }
 
     
